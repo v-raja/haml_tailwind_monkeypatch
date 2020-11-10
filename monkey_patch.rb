@@ -1,6 +1,3 @@
-module ApplicationHelper
-end
-
 module Haml
   # Haml::AttriubuteParser parses Hash literal to { String (key name) => String (value literal) }.
   module AttributeParser
