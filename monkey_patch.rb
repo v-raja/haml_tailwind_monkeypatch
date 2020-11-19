@@ -9,18 +9,18 @@ module Haml
 
         hash = Hash.new{"\"\""}
         each_attribute(exp) do |key, value|
-          if key.in?(['sm', 'md', 'lg', 'xl', 'focus', 'hover'])
+          if key.in?(['f', 'h', 'sm', 'md', 'lg', 'xl', 'focus', 'hover'])
             # Build up string to insert into class attribute
             tw_classes = value[1..-2]   # Remove the esacped quotes from the original string
-                          .split        
-                          .map{ |clas| "#{key}:#{clas}" }
+                          .split        # Split into array
+                          .map{ |clas| "#{attribute_name(key)}:#{clas}" }
                           .join(" ")
 
             # Insert tw classes string before last escape quote
             hash['class'] = hash['class'].insert(-2, " #{tw_classes}")
             # puts hash
             # raise
-          elsif key.in?(['c', 'class'])
+          elsif key.in?(['c', 'class', 'sm'])
             hash['class'] = hash['class'].insert(-2, " #{value[1..-2]}")
           else
             hash[key] = value
@@ -29,6 +29,18 @@ module Haml
         hash
       rescue UnexpectedTokenError, UnexpectedKeyError
         nil
+      end
+
+      # Returns name of attribute based on first letter if defined, else
+      # original string
+      def attribute_name(first_letter)
+        if first_letter == 'f'
+          "focus"
+        elsif first_letter == 'h'
+          "hover"
+        else
+          first_letter
+        end
       end
     end
   end
