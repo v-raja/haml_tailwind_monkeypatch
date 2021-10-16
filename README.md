@@ -21,7 +21,7 @@ Since the `class` attribute is repeated mulitple times, the monkeypatch also inc
 ```
 is the same as
 ``` haml
-%div(class: "ab cd"}
+%div{class: "ab cd"}
 ```
 
 ## How to use it
@@ -30,6 +30,6 @@ Paste the monkeypatch in `app/helpers/application_helper.rb` after your `Applica
 
 ## Note
 
-This patch has only been test for HAML 5.1.2. If you're using this with a newer version of HAML, I'd suggest you have a look at the 
+This patch has only been tested for HAML 5.1.2. If you're using this with a newer version of HAML, I'd suggest you have a look at the 
 [original parse function](https://github.com/haml/haml/blob/c67e67274353526d5a5da2a8d36cabcc313ed7ab/lib/haml/attribute_parser.rb#L27) 
-and change the monkeypatch as necessary (make a pull request while you're at it!).
+and change the monkeypatch as necessary (please make a PR while you're at it!).
